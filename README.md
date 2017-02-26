@@ -1,27 +1,42 @@
 # ember-changed-relationships
 
-This README outlines the details of collaborating on this Ember addon.
+Provides a mixin that can be imported to your models adding a single function, `changedRelationships`. It works similar to `changedAttributes`.
+
+`changedRelationships` works similar to `changedAttributes`.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-changed-relationships`
-* `npm install`
-* `bower install`
+* `ember install ember-changed-relationships`
 
-## Running
+## Usage
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+Simply call `changedRelationships` on a model.
 
-## Running Tests
+Given:
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+```
+Model {
+  user: belongsTo(), //initial state to user with id 1
+  items: hasMany() //inital state to ids [1,2,3]
+}
+```
 
-## Building
+after calling:
+```
+model.set('user', newUser); //id 2
+model.set('items', newItems); //ids [2,3]
+```
 
-* `ember build`
+You would be returned:
+```
+relationships: {
+  user: [1,2],
+  items: [ [1,2,3], [2,3] ]
+}
+```
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+After each `model.save()`, the canonical state will reset.
+
+## Credits
+
+ember-changed-relationships is maintained by [Isle of Code](https://isleofcode.com).
