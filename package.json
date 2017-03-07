@@ -1,17 +1,27 @@
 {
   "name": "ember-changed-relationships",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "Adds a changedRelationships function to models, similar to changedAttributes.",
+  "homepage": "https://github.com/isleofcode/ember-changed-relationships",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-data",
+    "ember-changed-relationships"
   ],
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "Alex Blom",
+    "email": "alex@isleofcode.com",
+    "url": "https://isleofcode.com"
+  },
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isleofcode/ember-changed-relationships.git"
+  },
   "scripts": {
     "build": "ember build",
     "start": "ember server",
