@@ -1,8 +1,6 @@
 # ember-changed-relationships
 
-Provides a mixin that can be imported to your models adding a single function, `changedRelationships`. It works similar to `changedAttributes`.
-
-`changedRelationships` works similar to `changedAttributes`.
+Provides a mixin that can be imported to your models adding a single function, `changedRelationships`. It works similar to `changedAttributes`. Use selectively.
 
 ## Installation
 
@@ -15,7 +13,17 @@ Simply call `changedRelationships` on a model.
 Given:
 
 ```
-Model {
+import ChangedRelationships from 'ember-changed-relationships';
+
+const {
+  Model,
+  belongsTo,
+  hasMany
+} = DS;
+
+export default Model.extend(
+  ChangedRelationships, {
+
   user: belongsTo(), //initial state to user with id 1
   items: hasMany() //inital state to ids [1,2,3]
 }
