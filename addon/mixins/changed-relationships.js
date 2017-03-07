@@ -1,8 +1,11 @@
 import Ember from 'ember';
-import lodash from 'lodash/lodash';
+//TODO - probably don't need lodash for a single import
+import {isEqual} from 'lodash';
 
 const { Mixin } = Ember;
-const { isEqual } = lodash;
+const mapById = function(member) {
+  return member.id;
+};
 
 export default Mixin.create({
   changedRelationships() {
@@ -23,8 +26,8 @@ export default Mixin.create({
         }
 
       } else if (meta.kind === 'hasMany') {
-        let initialIds = this.get(`${basePath}.canonicalMembers.list`).mapBy('id');
-        let newIds = this.get(`${basePath}.members.list`).mapBy('id');
+        let initialIds = this.get(`${basePath}.canonicalMembers.list`).map(mapById);
+        let newIds = this.get(`${basePath}.members.list`).map(mapById);
 
         if (isEqual(initialIds, newIds) === false) {
           relationships[name] = [ initialIds, newIds ];
