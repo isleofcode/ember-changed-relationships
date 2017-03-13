@@ -1,6 +1,6 @@
 # ember-changed-relationships
 
-[![Build Status](https://travis-ci.org/isleofcode/ember-changed-relationships.svg?branch=feat%2Ftravis)](https://travis-ci.org/isleofcode/ember-changed-relationships)
+[![Build Status](https://travis-ci.org/isleofcode/ember-changed-relationships.svg?branch=master)](https://travis-ci.org/isleofcode/ember-changed-relationships)
 
 Provides a mixin that can be imported to your models adding a single function, `changedRelationships`. It works similar to `changedAttributes`. Use selectively.
 
