@@ -1,6 +1,6 @@
 {
   "name": "ember-changed-relationships",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Adds a changedRelationships function to models, similar to changedAttributes.",
   "homepage": "https://github.com/isleofcode/ember-changed-relationships",
   "keywords": [
