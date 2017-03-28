@@ -1,6 +1,6 @@
 import Ember from 'ember';
-//TODO - probably don't need lodash for a single import
-import {isEqual} from 'lodash';
+import lodash from 'lodash/lodash';
+const { isEqual } = lodash;
 
 const { Mixin } = Ember;
 const mapById = function(member) {
