@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import lodash from 'lodash/lodash';
+import lodash from 'lodash';
 const { isEqual } = lodash;
 
 const { Mixin } = Ember;
@@ -15,19 +15,32 @@ export default Mixin.create({
     let relationships = {};
 
     this.eachRelationship((name, meta) => {
-      const basePath = `_internalModel._relationships.initializedRelationships.${name}`;
+      let basePath = `_internalModel._relationships.initializedRelationships.${name}`;
+      let hasCanonical = this.get(`${basePath}.canonicalMembers.list.length`) > 0;
 
       if (meta.kind === 'belongsTo') {
-        let initialId = this.get(`${basePath}.canonicalMembers.list.firstObject.id`);
         let newId = this.get(`${name}.id`);
+
+        let initialId;
+        if (hasCanonical) {
+          initialId = this.get(`${basePath}.canonicalMembers.list.firstObject.id`);
+        } else {
+          initialId = undefined;
+        }
 
         if (initialId !== newId) {
           relationships[name] = [ initialId, newId ];
         }
 
       } else if (meta.kind === 'hasMany') {
-        let initialIds = this.get(`${basePath}.canonicalMembers.list`).map(mapById);
         let newIds = this.get(`${basePath}.members.list`).map(mapById);
+
+        let initialIds;
+        if (hasCanonical) {
+          initialIds = this.get(`${basePath}.canonicalMembers.list`).map(mapById);
+        } else {
+          initialIds = [];
+        }
 
         if (isEqual(initialIds, newIds) === false) {
           relationships[name] = [ initialIds, newIds ];
