@@ -23,9 +23,10 @@ export default Mixin.create({
 
         let initialId;
         if (hasCanonical) {
-          initialId = this.get(`${basePath}.canonicalMembers.list.firstObject.id`);
-        } else {
-          initialId = undefined;
+          let firstObject = this.get(`${basePath}.canonicalMembers.list`)[0];
+          if (firstObject) {
+            initialId = firstObject.id;
+          }
         }
 
         if (initialId !== newId) {
